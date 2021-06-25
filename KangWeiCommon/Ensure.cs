@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KangWeiConmmon
+namespace KangWeiCommon
 {
     /// <summary>
     /// 确保输入值必须满足某个条件。如果不满足条件，就抛出异常。
@@ -102,7 +102,7 @@ namespace KangWeiConmmon
         /// <param name="paramName">参数名</param>
         /// <param name="input">输入值</param>
         /// <param name="value">参考值</param>
-        public static void Eq(string paramName, object input, object value)
+        public static void Eq<T>(string paramName, T input, T value)
         {
             if (!value.Equals(input))
                 throw new ArgumentException($"参数：{paramName}必须等于{value.ToString()}", paramName);
@@ -113,27 +113,10 @@ namespace KangWeiConmmon
         /// <param name="paramName">参数名</param>
         /// <param name="input">输入值</param>
         /// <param name="value">参考值</param>
-        public static void NotEq(string paramName, object input, object value)
+        public static void NotEq<T>(string paramName, T input, T value)
         {
             if (value.Equals(input))
                 throw new ArgumentException($"参数：{paramName}不能等于{value.ToString()}", paramName);
-        }
-        /// <summary>
-        /// 确保输入值不在指定的范围。如果在指定范围之内，就抛出异常。
-        /// </summary>
-        /// <param name="paramName">参数名</param>
-        /// <param name="input">输入值</param>
-        /// <param name="value">范围值</param>
-        public static void NotIn<T>(string paramName, object input, IEnumerable<T> value)
-        {
-            System.Collections.IEnumerator enumerator = value.GetEnumerator();
-            while (enumerator.MoveNext())
-            {
-                if (input.Equals(enumerator.Current))
-                {
-                    throw new ArgumentException($"参数：{paramName}必须在指定的范围之外！");
-                }
-            }
         }
         /// <summary>
         /// 确保输入值在指定的范围内。如果不在指定范围，就抛出异常。
@@ -154,6 +137,23 @@ namespace KangWeiConmmon
             throw new ArgumentException($"参数：{paramName}必须在指定的范围之内！");
         }
         /// <summary>
+        /// 确保输入值不在指定的范围。如果在指定范围之内，就抛出异常。
+        /// </summary>
+        /// <param name="paramName">参数名</param>
+        /// <param name="input">输入值</param>
+        /// <param name="value">范围值</param>
+        public static void NotIn(string paramName, object input, System.Collections.IEnumerable value)
+        {
+            System.Collections.IEnumerator enumerator = value.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                if (input.Equals(enumerator.Current))
+                {
+                    throw new ArgumentException($"参数：{paramName}必须在指定的范围之外！");
+                }
+            }
+        }
+        /// <summary>
         /// 确保输入值在指定的范围内。如果不在指定范围，就抛出异常。
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -166,12 +166,24 @@ namespace KangWeiConmmon
                 throw new ArgumentException($"参数：{paramName}必须在指定的范围之内！");
         }
         /// <summary>
+        /// 确保输入值不在指定的范围内。如果不在指定范围，就抛出异常。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="paramName">参数名</param>
+        /// <param name="input">输入值</param>
+        /// <param name="value">范围值</param>
+        public static void NotIn<T>(string paramName, T input, params T[] value)
+        {
+            if (value.Contains(input))
+                throw new ArgumentException($"参数：{paramName}不能在指定的范围之内！");
+        }
+        /// <summary>
         /// 确保输入的int值必须在指定的枚举范围之内，如果不在指定的枚举范围之内，就抛出异常
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="paramName">参数名</param>
         /// <param name="input">输入值</param>
-        public static void In<T>(string paramName, int input) where T : Enum
+        public static void EnumIn<T>(string paramName, int input) where T : Enum
         {
             Array array = Enum.GetValues(typeof(T));
             foreach (var item in array)
