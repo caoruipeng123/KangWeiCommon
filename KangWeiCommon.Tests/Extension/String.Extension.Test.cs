@@ -292,5 +292,25 @@ namespace KangWeiCommon.Tests.Extension
         {
             Assert.AreEqual("Remove   SpaceLine\r\n".RemoveSpaceLine(), "RemoveSpaceLine");
         }
+
+        [TestMethod]
+        public void IsFloatTest()
+        {
+            Assert.AreEqual("2.33".IsFloat(), true);
+            Assert.AreEqual("2.36r".IsFloat(), false);
+
+            Assert.AreEqual("2.36".IsFloat(out float a), true);
+            Assert.AreEqual(a, 2.36f);
+
+            Assert.AreEqual("55".IsFloat(out float b), true);
+            Assert.AreEqual(b, 55);
+        }
+        [TestMethod]
+        public void ToFloatTest()
+        {
+            Assert.AreEqual("66.77".ToFloat(), 66.77f);
+            Assert.AreEqual("2.36rr".ToFloat(), 0);
+            Assert.AreEqual("2.36rr".ToFloat(55), 55);
+        }
     }
 }

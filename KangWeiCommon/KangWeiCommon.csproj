@@ -9,7 +9,16 @@
     <RepositoryType>github</RepositoryType>
     <RepositoryUrl>https://github.com/caoruipeng123/KangWeiCommon</RepositoryUrl>
     <Description>该类库为曹瑞鹏开发的c#版本公共基础类库，项目开源免费，目前已经在多家公司线上环境使用，欢迎大家使用！</Description>
-    <PackageReleaseNotes>首次版本发行</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <Version>1.0.1</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DbUtil\DbUtil.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DbUtil\" />
+  </ItemGroup>
 
 </Project>

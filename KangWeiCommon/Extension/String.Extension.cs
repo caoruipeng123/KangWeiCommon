@@ -74,6 +74,7 @@ namespace KangWeiCommon
         /// <returns></returns>
         public static bool IsDecimal(this string str)
         {
+            
             return decimal.TryParse(str, out decimal returnValue);
         }
         /// <summary>
@@ -106,6 +107,37 @@ namespace KangWeiCommon
             return decimal.TryParse(str, out decimal returnValue) ?
                 decimal.Round(returnValue, decimals, MidpointRounding.AwayFromZero)
                 : default;
+        }
+        #endregion
+
+        #region 字符串和Float类型
+        /// <summary>
+        /// 判断字符串是否能转换为Float类型。
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsFloat(this string str)
+        {
+            return float.TryParse(str, out float returnValue);
+        }
+        /// <summary>
+        /// 判断字符串是否能转换为Float类型。
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="returnValue"></param>
+        /// <returns></returns>
+        public static bool IsFloat(this string str, out float returnValue)
+        {
+            return float.TryParse(str, out returnValue);
+        }
+        /// <summary>
+        /// 字符串转换为Float类型，如果转换失败，返回defaultValue
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static float ToFloat(this string str, float defaultValue = 0)
+        {
+            return float.TryParse(str, out float returnValue) ? returnValue : defaultValue;
         }
         #endregion
 
