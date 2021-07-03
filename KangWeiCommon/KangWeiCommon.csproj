@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.1;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>曹瑞鹏</Authors>
+    <Authors>caoruipeng</Authors>
     <Company>山西康维思辰科技有限公司</Company>
     <Product>C#公共基础类库</Product>
     <RepositoryType>github</RepositoryType>
     <RepositoryUrl>https://github.com/caoruipeng123/KangWeiCommon</RepositoryUrl>
-    <Description>该类库为曹瑞鹏开发的c#版本公共基础类库，项目开源免费，目前已经在多家公司线上环境使用，欢迎大家使用！</Description>
+    <Description>该类库为c#版本公共基础类库，项目开源免费，目前已经在多家公司线上环境使用，欢迎大家使用！</Description>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
