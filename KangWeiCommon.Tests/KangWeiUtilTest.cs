@@ -15,7 +15,7 @@ namespace KangWeiCommon.Tests
         public void IpUIntTest()
         {
             Random random = new Random();
-            for(int i = 0; i < 1000000; i++)
+            for(int i = 0; i < 10; i++)
             {
                 string ip = $"{random.Next(1,215)}.{random.Next(1, 215)}.{random.Next(1, 215)}.{random.Next(1, 215)}";
                 uint ipNumber = KangWeiUtil.IpToUInt(ip);

@@ -74,9 +74,9 @@ namespace KangWeiCommon.Tests.Extension
         [TestMethod]
         public void SerializeToXmlTest()
         {
-            //object a = new { Name = "testName", Age = 29 };
-            //string xmlStr = a.SerializeToXml();
-            //Console.WriteLine(xmlStr);
+            Person Person = new Person { Name = "testName", Age = 29 };
+            string xmlStr = Person.SerializeToXml();
+            Console.WriteLine(xmlStr);
         }
         /// <summary>
         /// TODO 后续在完善
@@ -87,10 +87,11 @@ namespace KangWeiCommon.Tests.Extension
             //Person person = new Person();
             //Student student = person.To<Student>();
         }
+        [Serializable]
         public class Person
         {
             public string Name { get; set; }
-            public string Age { get; set; }
+            public int Age { get; set; }
             public int Height { get; set; }
         }
         public class Student:Person

@@ -452,46 +452,5 @@ namespace KangWeiCommon
             return str.Replace(" ", "").Replace("\r", "").Replace("\n", "");
         }
         #endregion
-
-        ///// <summary>
-        ///// 判断一个字符串是否为url格式
-        ///// </summary>
-        ///// <param name="str"></param>
-        ///// <returns></returns>
-        //public static bool IsUrl(this string str)
-        //{
-        //    if (str.IsNullOrEmpty())
-        //        return false;
-        //    string pattern = @"^(http|https|ftp|rtsp|mms):(\/\/|\\\\)[A-Za-z0-9%\-_@]+\.[A-Za-z0-9%\-_@]+[A-Za-z0-9\.\/=\?%\-&_~`@:\+!;]*$";
-        //    return Regex.IsMatch(str, pattern, RegexOptions.IgnoreCase);
-        //}
-        ///// <summary>
-        ///// 判断一个字符串是否为Email格式
-        ///// </summary>
-        ///// <param name="str"></param>
-        ///// <returns></returns>
-        //public static bool IsEmail(this string str)
-        //{
-        //    return Regex.IsMatch(str, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
-        //}
-        ///// <summary>
-        ///// 将字符串中的所有字符编码为一个字节序列
-        ///// </summary>
-        ///// <param name="str"></param>
-        ///// <param name="encoding">编码方式：默认使用Encoding.UTF8</param>
-        ///// 该方法和<see cref="Decode(System.Collections.Generic.IEnumerable{byte}, Encoding)"/>相反
-        ///// <returns></returns>
-        //public static byte[] Encode(this string str, Encoding encoding = null)
-        //{
-        //    if (str == null)
-        //        throw new ArgumentNullException(nameof(str));
-        //    encoding = encoding ?? Encoding.UTF8;
-        //    return encoding.GetBytes(str);
-        //}
-        /// <summary>
-        /// 去除字符串中所有空格，包括\r和\n。
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
     }
 }
