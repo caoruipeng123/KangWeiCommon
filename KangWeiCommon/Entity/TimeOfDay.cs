@@ -24,6 +24,7 @@ namespace KangWeiCommon.Entity
             Second = second;
             Validate();
         }
+       
         /// <summary>
         /// 根据给定的小时、分（秒：默认0）创建TimeOfDay实例对象
         /// </summary>
@@ -36,6 +37,7 @@ namespace KangWeiCommon.Entity
             Second = 0;
             Validate();
         }
+       
         /// <summary>
         /// 校验Hour、Minute、Second是否合法
         /// </summary>
@@ -56,6 +58,7 @@ namespace KangWeiCommon.Entity
                 throw new ArgumentException("Second must be from 0 to 59");
             }
         }
+       
         /// <summary>
         /// 根据给定的小时、分、秒创建TimeOfDay实例对象
         /// </summary>
@@ -67,6 +70,7 @@ namespace KangWeiCommon.Entity
         {
             return new TimeOfDay(hour, minute, second);
         }
+       
         /// <summary>
         /// 根据给定的小时、分（秒：默认0）创建TimeOfDay实例对象
         /// </summary>
@@ -77,18 +81,22 @@ namespace KangWeiCommon.Entity
         {
             return new TimeOfDay(hour, minute);
         }
+      
         /// <summary>
         /// 返回Day中的Hour (在 0 and 23之间)
         /// </summary>
         public int Hour { get; }
+      
         /// <summary>
         /// 返回Day中的分 (在 0 and 59之间)
         /// </summary>
         public int Minute { get; }
+      
         /// <summary>
         ///返回Day中的秒 (在 0 and 59之间)
         /// </summary>
         public int Second { get; }
+      
         /// <summary>
         /// 判断当前实例时间是否在给定的时间timeOfDay之前。在返回True，不在返回False
         /// </summary>
@@ -125,6 +133,7 @@ namespace KangWeiCommon.Entity
 
             return false;
         }
+     
         /// <summary>
         /// 判断两个时间是否相等
         /// </summary>
@@ -141,6 +150,7 @@ namespace KangWeiCommon.Entity
 
             return other.Hour == Hour && other.Minute == Minute && other.Second == Second;
         }
+     
         /// <summary>
         /// 获取哈希值
         /// </summary>
@@ -149,6 +159,7 @@ namespace KangWeiCommon.Entity
         {
             return (Hour + 1) ^ (Minute + 1) ^ (Second + 1);
         }
+     
         /// <summary>
         /// 截取给定时间的年月日和当前实例的Hour、Minute、Second拼接成一个时间对象返回
         /// </summary>
@@ -164,6 +175,7 @@ namespace KangWeiCommon.Entity
             TimeSpan t = new TimeSpan(0, Hour, Minute, Second);
             return cal.Add(t);
         }
+      
         /// <summary>
         /// 返回当前时间的描述格式
         /// </summary>

@@ -25,6 +25,7 @@ namespace KangWeiCommon
             var a = collection.GetEnumerator();
             return a.MoveNext();
         }
+       
         /// <summary>
         /// 判断一个集合中是否 没有元素。没有返回true
         /// </summary>

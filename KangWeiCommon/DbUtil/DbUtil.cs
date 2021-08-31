@@ -1,17 +1,21 @@
-﻿using System;
+﻿using KangWeiCommon.Entity;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Reflection;
 
-namespace KangWeiCommon.DbUtil
+namespace KangWeiCommon
 {
     /// <summary>
     /// SQL Server数据库访问操作类
     /// </summary>
-    public partial class DbUtils
+    public partial class DbUtil
     {
         static ConcurrentDictionary<Type, PropertyInfo[]> propertyCache = new ConcurrentDictionary<Type, PropertyInfo[]>();
+
         /// <summary>
         /// 执行查询语句，返回DataSet
         /// </summary>
@@ -28,19 +32,13 @@ namespace KangWeiCommon.DbUtil
                 using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                 {
                     DataSet ds = new DataSet();
-                    try
-                    {
-                        da.Fill(ds, "ds");
-                        cmd.Parameters.Clear();
-                    }
-                    catch (SqlException ex)
-                    {
-                        throw ex;
-                    }
+                    da.Fill(ds, "ds");
+                    cmd.Parameters.Clear();
                     return ds;
                 }
             }
         }
+
         /// <summary>
         /// 根据查询语句获取单个实体
         /// </summary>
@@ -58,6 +56,7 @@ namespace KangWeiCommon.DbUtil
             }
             return default(T);
         }
+
         /// <summary>
         /// 执行一条计算查询结果语句，返回第一行第一列查询结果
         /// </summary>
@@ -72,27 +71,21 @@ namespace KangWeiCommon.DbUtil
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    try
+                    PrepareCommand(cmd, connection, null, sql, parameters);
+                    object obj = cmd.ExecuteScalar();
+                    cmd.Parameters.Clear();
+                    if ((Object.Equals(obj, null)) || (Object.Equals(obj, DBNull.Value)))
                     {
-                        PrepareCommand(cmd, connection, null, sql, parameters);
-                        object obj = cmd.ExecuteScalar();
-                        cmd.Parameters.Clear();
-                        if ((Object.Equals(obj, null)) || (Object.Equals(obj, DBNull.Value)))
-                        {
-                            return default(T);
-                        }
-                        else
-                        {
-                            return obj.To<T>();
-                        }
+                        return default(T);
                     }
-                    catch (SqlException ex)
+                    else
                     {
-                        throw ex;
+                        return obj.To<T>();
                     }
                 }
             }
         }
+
         /// <summary>
         /// 根据查询语句获取实体集合
         /// </summary>
@@ -106,6 +99,7 @@ namespace KangWeiCommon.DbUtil
             DataTable dt = Query(connStr, sql, parameters).Tables[0];
             return ConvertDataTableToEntityList<T>(dt);
         }
+
         /// <summary>
         /// 根据查询语句获取实体集合[当泛型T为int、double、decimal、string等基础类型时，使用该方法]
         /// </summary>
@@ -130,6 +124,7 @@ namespace KangWeiCommon.DbUtil
             }
             return list;
         }
+
         /// <summary>
         /// 查询分页数据
         /// </summary>
@@ -161,6 +156,7 @@ namespace KangWeiCommon.DbUtil
             return new PageModel<T>() { PageIndex = pageIndex, PageSize = pageSize, PageData = new List<T>(), RowCount = ds.Tables[1].Rows[0][0].ToInt(), PageCount = (int)Math.Ceiling(ds.Tables[1].Rows[0][0].ToInt() * 1.0 / pageSize) };
 
         }
+
         /// <summary>
         /// 执行sql语句，返回受影响的行数
         /// </summary>
@@ -174,20 +170,14 @@ namespace KangWeiCommon.DbUtil
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    try
-                    {
-                        PrepareCommand(cmd, connection, null, sql, parameters);
-                        int rows = cmd.ExecuteNonQuery();
-                        cmd.Parameters.Clear();
-                        return rows;
-                    }
-                    catch (SqlException ex)
-                    {
-                        throw ex;
-                    }
+                    PrepareCommand(cmd, connection, null, sql, parameters);
+                    int rows = cmd.ExecuteNonQuery();
+                    cmd.Parameters.Clear();
+                    return rows;
                 }
             }
         }
+
         /// <summary>
         /// 装配SqlCommand对象
         /// </summary>
@@ -223,6 +213,7 @@ namespace KangWeiCommon.DbUtil
                 }
             }
         }
+
         /// <summary>
         /// 通过反射将DataRow中的一行数据转换为Model
         /// </summary>
@@ -259,6 +250,7 @@ namespace KangWeiCommon.DbUtil
             }
             return default(T);
         }
+
         /// <summary>
         /// 通过反射将DataTable中的数据转换为实体类集合
         /// </summary>
@@ -288,15 +280,11 @@ namespace KangWeiCommon.DbUtil
                 var t = new T();
                 foreach (var p in pros)
                 {
-                    if (p.CanWrite)
+                    if (p.CanWrite && dt.Columns.Contains(p.Name) && !Convert.IsDBNull(dr[p.Name]))
                     {
-                        if (dt.Columns.Contains(p.Name) && !Convert.IsDBNull(dr[p.Name]))
-                        {
-                            p.SetValue(t, dr[p.Name]);
-                        }
+                        p.SetValue(t, dr[p.Name]);
                     }
                 }
-
                 list.Add(t);
             }
             return list;

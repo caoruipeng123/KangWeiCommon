@@ -20,6 +20,7 @@ namespace KangWeiCommon
             if (input == null || string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
                 throw new ArgumentException($"参数:{paramName}不能为空字符串！", paramName);
         }
+
         /// <summary>
         /// 确保输入值不能为null。如果为null,就抛异常。
         /// </summary>
@@ -30,6 +31,7 @@ namespace KangWeiCommon
             if (input == null)
                 throw new ArgumentException($"参数:{paramName}不能为null！", paramName);
         }
+
         /// <summary>
         /// 确保输入值必须为null。如果不为null,就抛异常。
         /// </summary>
@@ -40,6 +42,7 @@ namespace KangWeiCommon
             if (input != null)
                 throw new ArgumentException($"参数:{paramName}必须为null！", paramName);
         }
+
         /// <summary>
         /// 确保集合中必须有元素。如果没有元素，就抛异常
         /// </summary>
@@ -51,6 +54,7 @@ namespace KangWeiCommon
             if (!enumerator.MoveNext())
                 throw new Exception($"{paramName}不能为空，集合中至少需要包含一个元素！");
         }
+        
         /// <summary>
         /// 确保输入值大于参考值。如果输入值小于等于参考值，就抛出异常。
         /// </summary>
@@ -63,6 +67,7 @@ namespace KangWeiCommon
             if (input.CompareTo(value) <= 0)
                 throw new ArgumentException($"参数：{paramName}必须大于{value}", paramName);
         }
+        
         /// <summary>
         /// 确保输入值大于等于参考值。如果输入值小于参考值，就抛出异常。
         /// </summary>
@@ -74,6 +79,7 @@ namespace KangWeiCommon
             if (input.CompareTo(value) < 0)
                 throw new ArgumentException($"参数：{paramName}必须大于等于{value}", paramName);
         }
+       
         /// <summary>
         /// 确保输入值小于参考值。如果输入值大于等于参考值，就抛出异常。
         /// </summary>
@@ -85,6 +91,7 @@ namespace KangWeiCommon
             if (input.CompareTo(value) >= 0)
                 throw new ArgumentException($"参数：{paramName}必须小于{value}", paramName);
         }
+       
         /// <summary>
         /// 确保输入值小于等于参考值。如果输入值大于参考值，就抛出异常。
         /// </summary>
@@ -96,6 +103,7 @@ namespace KangWeiCommon
             if (input.CompareTo(value) > 0)
                 throw new ArgumentException($"参数：{paramName}必须小于等于{value}", paramName);
         }
+      
         /// <summary>
         /// 确保输入值等于参考值。如果输入值不等于参考值，就抛出异常。
         /// </summary>
@@ -107,6 +115,7 @@ namespace KangWeiCommon
             if (!value.Equals(input))
                 throw new ArgumentException($"参数：{paramName}必须等于{value.ToString()}", paramName);
         }
+      
         /// <summary>
         /// 确保输入值不等于参考值。如果输入值等于参考值，就抛出异常。
         /// </summary>
@@ -118,6 +127,7 @@ namespace KangWeiCommon
             if (value.Equals(input))
                 throw new ArgumentException($"参数：{paramName}不能等于{value.ToString()}", paramName);
         }
+      
         /// <summary>
         /// 确保输入值在指定的范围内。如果不在指定范围，就抛出异常。
         /// </summary>
@@ -136,6 +146,7 @@ namespace KangWeiCommon
             }
             throw new ArgumentException($"参数：{paramName}必须在指定的范围之内！");
         }
+      
         /// <summary>
         /// 确保输入值不在指定的范围。如果在指定范围之内，就抛出异常。
         /// </summary>
@@ -153,6 +164,7 @@ namespace KangWeiCommon
                 }
             }
         }
+      
         /// <summary>
         /// 确保输入值在指定的范围内。如果不在指定范围，就抛出异常。
         /// </summary>
@@ -165,6 +177,7 @@ namespace KangWeiCommon
             if (!value.Contains(input))
                 throw new ArgumentException($"参数：{paramName}必须在指定的范围之内！");
         }
+      
         /// <summary>
         /// 确保输入值不在指定的范围内。如果不在指定范围，就抛出异常。
         /// </summary>
@@ -177,6 +190,7 @@ namespace KangWeiCommon
             if (value.Contains(input))
                 throw new ArgumentException($"参数：{paramName}不能在指定的范围之内！");
         }
+     
         /// <summary>
         /// 确保输入的int值必须在指定的枚举范围之内，如果不在指定的枚举范围之内，就抛出异常
         /// </summary>

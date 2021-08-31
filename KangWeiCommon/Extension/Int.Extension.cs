@@ -22,6 +22,7 @@ namespace KangWeiCommon
                 return default;
             return Convert.ToInt32(data);
         }
+       
         /// <summary>
         /// 判断一个年份是否为闰年
         /// </summary>
@@ -31,6 +32,7 @@ namespace KangWeiCommon
         {
             return DateTime.IsLeapYear(year);
         }
+      
         /// <summary>
         /// 返回指定年和月中的天数。
         /// </summary>

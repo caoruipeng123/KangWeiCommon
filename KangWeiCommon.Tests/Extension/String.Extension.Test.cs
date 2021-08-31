@@ -312,5 +312,17 @@ namespace KangWeiCommon.Tests.Extension
             Assert.AreEqual("2.36rr".ToFloat(), 0);
             Assert.AreEqual("2.36rr".ToFloat(55), 55);
         }
+        [TestMethod]
+        public void ToEnum()
+        {
+            TestEnum testEnum = "1".ToEnum<TestEnum>();
+            Assert.AreEqual(testEnum, TestEnum.Type2);
+        }
+        public enum TestEnum
+        {
+            Type1,
+            Type2,
+            Type3
+        }
     }
 }

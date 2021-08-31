@@ -23,6 +23,7 @@ namespace KangWeiCommon
         {
             return str == null || string.IsNullOrEmpty(str) || string.IsNullOrWhiteSpace(str);
         }
+       
         /// <summary>
         /// 判断字符串是否为空。为空时返回ture并执行指定的委托
         /// </summary>
@@ -39,6 +40,7 @@ namespace KangWeiCommon
             }
             return false;
         }
+       
         /// <summary>
         /// 判断字符串是否不为空。null、string.empty、""、" ",任何一种情况都会视为空
         /// </summary>
@@ -48,6 +50,7 @@ namespace KangWeiCommon
         {
             return !str.IsNullOrEmpty();
         }
+     
         /// <summary>
         /// 断字符串是否不为空。不为空时返回true并执行指定委托
         /// </summary>
@@ -77,6 +80,7 @@ namespace KangWeiCommon
             
             return decimal.TryParse(str, out decimal returnValue);
         }
+       
         /// <summary>
         /// 判断字符串是否能转换为Decimal类型。
         /// </summary>
@@ -87,6 +91,7 @@ namespace KangWeiCommon
         {
             return decimal.TryParse(str, out returnValue);
         }
+      
         /// <summary>
         /// 字符串转换为Decimal类型，如果转换失败，返回0
         /// </summary>
@@ -96,6 +101,7 @@ namespace KangWeiCommon
         {
             return decimal.TryParse(str, out decimal returnValue) ? returnValue : defaultValue;
         }
+      
         /// <summary>
         /// 字符串转换为Decimal类型并四舍五入保留指定位数的小数
         /// </summary>
@@ -120,6 +126,7 @@ namespace KangWeiCommon
         {
             return float.TryParse(str, out float returnValue);
         }
+       
         /// <summary>
         /// 判断字符串是否能转换为Float类型。
         /// </summary>
@@ -130,6 +137,7 @@ namespace KangWeiCommon
         {
             return float.TryParse(str, out returnValue);
         }
+       
         /// <summary>
         /// 字符串转换为Float类型，如果转换失败，返回defaultValue
         /// </summary>
@@ -151,6 +159,7 @@ namespace KangWeiCommon
         {
             return double.TryParse(str, out double returnValue);
         }
+      
         /// <summary>
         /// 判断字符串能否成功转换为Double类型。
         /// </summary>
@@ -161,6 +170,7 @@ namespace KangWeiCommon
         {
             return double.TryParse(str, out returnValue);
         }
+      
         /// <summary>
         /// 字符串转换为double类型。如果转换失败，返回0
         /// </summary>
@@ -170,16 +180,6 @@ namespace KangWeiCommon
         {
             return double.TryParse(str, out double returnValue) ? returnValue : defaultValue;
         }
-        ///// <summary>
-        ///// 字符串转换为double类型
-        ///// </summary>
-        ///// <param name="str"></param>
-        ///// <param name="digits"></param>
-        ///// <returns></returns>
-        //public static double ToDouble(this string str, int digits)
-        //{
-        //    return double.TryParse(str, out double returnValue) ? returnValue.ToRound(digits) : default(double);
-        //}
         #endregion
 
         #region 字符串和Int16类型
@@ -192,6 +192,7 @@ namespace KangWeiCommon
         {
             return short.TryParse(str, out short returnValue);
         }
+      
         /// <summary>
         /// 判断字符串能否转换为Short类型(int16)。
         /// </summary>
@@ -202,6 +203,7 @@ namespace KangWeiCommon
         {
             return short.TryParse(str, out returnValue);
         }
+      
         /// <summary>
         /// 字符串转换为Short类型(Int16类型)。如果转换失败，返回指定的默认值
         /// </summary>
@@ -223,6 +225,7 @@ namespace KangWeiCommon
         {
             return int.TryParse(str, out int returnValue);
         }
+       
         /// <summary>
         /// 判断字符串能否成功转换为Int32类型。
         /// </summary>
@@ -233,6 +236,7 @@ namespace KangWeiCommon
         {
             return int.TryParse(str, out returnValue);
         }
+       
         /// <summary>
         /// 字符串转换为int类型。如果转换失败，返回指定的默认值
         /// </summary>
@@ -243,6 +247,7 @@ namespace KangWeiCommon
         {
             return int.TryParse(str, out int returnValue) ? returnValue : defaultValue;
         }
+       
         /// <summary>
         /// 字符串转换为int类型。如果转换失败，返回null
         /// </summary>
@@ -271,6 +276,7 @@ namespace KangWeiCommon
         {
             return long.TryParse(str, out long returnValue);
         }
+       
         /// <summary>
         /// 判断字符串能否成功转换为Int64类型。如果转换失败，返回指定的默认值
         /// </summary>
@@ -281,6 +287,7 @@ namespace KangWeiCommon
         {
             return long.TryParse(str, out returnValue);
         }
+       
         /// <summary>
         /// 字符串转换为Long类型(int64)
         /// </summary>
@@ -293,35 +300,6 @@ namespace KangWeiCommon
         #endregion
 
         #region 字符串和DateTime类型
-        ///// <summary>
-        ///// 判断字符串能够转换为DateTime类型。
-        ///// </summary>
-        ///// <param name="str"></param>
-        ///// <returns></returns>
-        //public static bool IsDateTime(this string str)
-        //{
-        //    return DateTime.TryParse(str, out DateTime returnValue);
-        //}
-        ///// <summary>
-        ///// 判断字符串能够转换为DateTime类型。
-        ///// </summary>
-        ///// <param name="str"></param>
-        ///// <param name="returnValue"></param>
-        ///// <returns></returns>
-        //public static bool IsDateTime(this string str, out DateTime returnValue)
-        //{
-        //    return DateTime.TryParse(str, out returnValue);
-        //}
-        ///// <summary>
-        ///// 字符串转换为DateTime类型。如果转换失败，返回指定的默认值
-        ///// </summary>
-        ///// <param name="str"></param>
-        ///// <param name="defaultValue">转换失败时返回的默认值</param>
-        ///// <returns></returns>
-        //public static DateTime ToDateTime(this string str, DateTime defaultValue = default)
-        //{
-        //    return DateTime.TryParse(str, out DateTime returnValue) ? returnValue : defaultValue;
-        //}
         /// <summary>
         /// 字符串转换为DateTime类型。
         /// </summary>
@@ -331,6 +309,7 @@ namespace KangWeiCommon
         {
             return DateTime.ParseExact(str, format, CultureInfo.CurrentCulture);
         }
+       
         /// <summary>
         /// 字符串转换为DateTime类型，如果转换失败，返回null 
         /// </summary>
@@ -368,6 +347,7 @@ namespace KangWeiCommon
         {
             return Guid.TryParse(str, out Guid returnValue);
         }
+       
         /// <summary>
         ///判断字符串能够转为Guid类型。
         /// </summary>
@@ -378,7 +358,7 @@ namespace KangWeiCommon
         {
             return Guid.TryParse(str, out returnValue);
         }
-        static Guid guid = Guid.Empty;
+        
         /// <summary>
         /// 字符串转换为Guid类型，如果转换失败，返回Guid.Empty
         /// </summary>
@@ -386,8 +366,7 @@ namespace KangWeiCommon
         /// <returns></returns>
         public static Guid ToGuid(this string str)
         {
-            Guid test;
-            if (Guid.TryParse(str, out test))
+            if (Guid.TryParse(str, out Guid test))
             {
                 return test;
             }
@@ -395,6 +374,19 @@ namespace KangWeiCommon
             {
                 return Guid.Empty;
             }
+        }
+        #endregion
+
+        #region  字符串和Enum类型
+        /// <summary>
+        /// 字符串转换为枚举类型
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="this"></param>
+        /// <returns></returns>
+        public static T ToEnum<T>(this string @this)
+        {
+            return (T)Enum.Parse(typeof(T), @this);
         }
         #endregion
 
@@ -418,6 +410,7 @@ namespace KangWeiCommon
                 return str;
             }
         }
+      
         /// <summary>
         /// 从右边开始截取长度的字符串
         /// length小于1时或字符串传null的时候，抛出异常。

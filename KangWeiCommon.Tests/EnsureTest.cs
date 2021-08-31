@@ -15,7 +15,7 @@ namespace KangWeiCommon.Tests
             {
                 Ensure.NotNullOrEmpty("测试参数", null);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 flag = 1;
             }
@@ -26,7 +26,7 @@ namespace KangWeiCommon.Tests
             {
                 Ensure.NotNullOrEmpty("测试参数", "");
             }
-            catch (Exception ex)
+            catch
             {
                 flag = 1;
             }
@@ -37,7 +37,7 @@ namespace KangWeiCommon.Tests
             {
                 Ensure.NotNullOrEmpty("测试参数", "   ");
             }
-            catch (Exception ex)
+            catch
             {
                 flag = 1;
             }
@@ -48,7 +48,7 @@ namespace KangWeiCommon.Tests
             {
                 Ensure.NotNullOrEmpty("测试参数", string.Empty);
             }
-            catch (Exception ex)
+            catch
             {
                 flag = 1;
             }

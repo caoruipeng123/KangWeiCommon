@@ -29,6 +29,7 @@ namespace KangWeiCommon
             ret = ((arr[3] & 0xff) | ret);
             return ret;
         }
+       
         /// <summary>
         /// int转换为ip地址
         /// </summary>

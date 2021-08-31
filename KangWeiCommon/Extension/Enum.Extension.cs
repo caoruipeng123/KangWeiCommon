@@ -33,7 +33,7 @@ namespace KangWeiCommon
             {
                 return name;
             }
-            return attribute == null ? "" : attribute.Description;
+            return attribute?.Description;
         }
     }
 }

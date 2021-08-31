@@ -12,13 +12,14 @@ namespace KangWeiCommon.Entity
     public class ResultModel<T>
     {
         /// <summary>
-        /// 午餐构造函数
+        /// 无参构造函数
         /// </summary>
         public ResultModel()
         {
         }
+       
         /// <summary>
-        /// 有残构造函数
+        /// 有参构造函数
         /// </summary>
         /// <param name="code"></param>
         /// <param name="data"></param>
@@ -29,14 +30,17 @@ namespace KangWeiCommon.Entity
             Msg = msg;
             Data = data;
         }
+       
         /// <summary>
         /// 返回状态码
         /// </summary>
         public int Code { get; set; }
+       
         /// <summary>
         /// 返回详细信息
         /// </summary>
         public string Msg { get; set; }
+       
         /// <summary>
         /// 返回数据
         /// </summary>

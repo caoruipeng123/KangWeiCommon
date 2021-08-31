@@ -13,7 +13,7 @@ namespace KangWeiCommon.Tests.Extension
         {
             Assert.AreEqual(OrderStatu.NotPay.GetDescription(), "未支付");
             Assert.AreEqual(OrderStatu.Success.GetDescription(), "Success");
-            Assert.AreEqual(OrderStatu.Success.GetDescription(false), "");
+            Assert.AreEqual(OrderStatu.Success.GetDescription(false), null);
         }
         
     }

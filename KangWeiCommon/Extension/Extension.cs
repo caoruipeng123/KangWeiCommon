@@ -22,6 +22,7 @@ namespace KangWeiCommon
         {
             return minValue.CompareTo(@this) == -1 && @this.CompareTo(maxValue) == -1;
         }
+       
         /// <summary>
         /// 判断一个值是否在一个范围之内.如果minValue&lt;= 输入值 &gt;=maxValue,返回true
         /// </summary>

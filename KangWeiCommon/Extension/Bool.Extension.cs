@@ -23,6 +23,7 @@ namespace KangWeiCommon
                 action();
             }
         }
+        
         /// <summary>
         /// 如果一个bool类型的值为false，执行一个委托
         /// </summary>
