@@ -8,9 +8,12 @@
     <Product>C#公共基础类库</Product>
     <RepositoryType>github</RepositoryType>
     <RepositoryUrl>https://github.com/caoruipeng123/KangWeiCommon</RepositoryUrl>
-    <Description>该类库为c#版本公共基础类库，项目开源免费，目前已经公司线上环境使用，欢迎大家使用！</Description>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <Version>1.0.4</Version>
+    <Description>该类库为C#/.NET公共基础类库，项目开源免费，目前已经公司线上环境使用，欢迎大家使用！</Description>
+    <PackageReleaseNotes>1、新增雪花算法自增生成器IdWorker类。
+2、新增单例模式父类Singleton类，其他单例类可以直接继承该类，无需自己实现单例模式 。</PackageReleaseNotes>
+    <Version>1.0.5</Version>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <FileVersion>1.0.5.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">

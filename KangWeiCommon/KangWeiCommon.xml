@@ -111,6 +111,16 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="F:KangWeiCommon.DesignPattern.Singleton`1._instance">
+            <summary>
+            当前类的唯一实例
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.DesignPattern.Singleton`1.syslock">
+            <summary>
+            全局锁 
+            </summary>
+        </member>
         <member name="M:KangWeiCommon.DesignPattern.Singleton`1.#ctor">
             <summary>
             无参构造函数
