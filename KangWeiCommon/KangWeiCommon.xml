@@ -309,6 +309,9 @@
             <summary>
             系统类的扩展
             </summary>
+            <summary>
+            系统类的扩展
+            </summary>
         </member>
         <member name="M:KangWeiCommon.Extensions.IfTrue(System.Boolean,System.Action)">
             <summary>
@@ -459,13 +462,14 @@
             <remarks>被序列化的对象需要实现 <see cref="T:System.SerializableAttribute"/>特性 </remarks>
             <returns>xml格式字符串</returns>
         </member>
-        <member name="M:KangWeiCommon.Extensions.DeserializeXml``1(System.String)">
+        <member name="M:KangWeiCommon.Extensions.SerializeToJson``1(``0,System.Text.Encoding)">
             <summary>
-            将字符串反序列化为对象
+            对象序列化为json字符串
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="this">xml字符串</param>
-            <returns></returns>
+            <param name="this"></param>
+            <param name="encoding"></param>
+            <returns>Json字符串</returns>
         </member>
         <member name="M:KangWeiCommon.Extensions.To``1(System.Object)">
             <summary>
@@ -481,6 +485,15 @@
             </summary>
             <param name="this"></param>
             <param name="targetType">转换到targetType类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:KangWeiCommon.Extensions.ReadToEnd(System.IO.Stream,System.Text.Encoding,System.Int64)">
+            <summary>
+             读取Stream流返回字符串
+            </summary>
+            <param name="this"></param>
+            <param name="encoding"></param>
+            <param name="position">流的起始位置</param>
             <returns></returns>
         </member>
         <member name="M:KangWeiCommon.Extensions.IsNullOrEmpty(System.String)">
@@ -738,6 +751,23 @@
             <param name="str"></param>
             <returns></returns>
         </member>
+        <member name="M:KangWeiCommon.Extensions.DeserializeXml``1(System.String)">
+            <summary>
+            将xml字符串反序列化为对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="this">xml字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:KangWeiCommon.Extensions.DeserializeJson``1(System.String,System.Text.Encoding)">
+            <summary>
+            将json字符串反序列化为对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="this"></param>
+            <param name="encoding"></param>
+            <returns></returns>
+        </member>
         <member name="T:KangWeiCommon.Ensure">
             <summary>
             确保输入值必须满足某个条件。如果不满足条件，就抛出异常。
@@ -977,7 +1007,7 @@
         </member>
         <member name="F:KangWeiCommon.IdWorker.Jan1st1970">
             <summary>
-            1970 utc时间
+            1970.1.1 utc时间
             </summary>
         </member>
         <member name="T:KangWeiCommon.KangWeiUtil">

@@ -160,11 +160,10 @@ namespace KangWeiCommon
         protected virtual long TimeGen()
         {
             return (long)(DateTime.UtcNow - Jan1st1970).TotalMilliseconds;
-            //return TimeExtensions.CurrentTimeMillis();
         }
 
         /// <summary>
-        /// 1970 utc时间
+        /// 1970.1.1 utc时间
         /// </summary>
         static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
     }
