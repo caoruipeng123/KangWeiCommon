@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -116,7 +117,7 @@ namespace KangWeiCommon
         }
       
         /// <summary>
-        /// 序列化对象为xml字符串
+        /// 将对象序列化为xml字符串
         /// </summary>
         /// <param name="this">要序列化的对象</param>
         /// <remarks>被序列化的对象需要实现 <see cref="SerializableAttribute"/>特性 </remarks>
@@ -130,23 +131,35 @@ namespace KangWeiCommon
             Type type = @this.GetType();
             if (type.IsSerializable)
             {
-                StringBuilder sb = new StringBuilder();
                 XmlSerializer xs = new XmlSerializer(type);
-                XmlWriterSettings xset = new XmlWriterSettings();
-                xset.CloseOutput = true;
-                xset.Encoding = Encoding.UTF8;
-                xset.Indent = true;
-                xset.CheckCharacters = false;
-                XmlWriter xw = XmlWriter.Create(sb, xset);
-                xs.Serialize(xw, @this);
-                xw.Flush();
-                xw.Close();
-                return sb.ToString();
+                using (var stringWriter = new StringWriter())
+                {
+                    xs.Serialize(stringWriter, @this);
+                    using (var streamReader = new StringReader(stringWriter.GetStringBuilder().ToString()))
+                    {
+                        return streamReader.ReadToEnd();
+                    }
+                }
             }
             else
             {
                 throw new Exception("对象需要实现Serializable特性！");
             }
+        }
+
+        /// <summary>
+        /// 将字符串反序列化为对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="this">xml字符串</param>
+        /// <returns></returns>
+        public static T DeserializeXml<T>(this string @this)
+        {
+            var x = new XmlSerializer(typeof(T));
+            using(var r = new StringReader(@this))
+            {
+                return (T)x.Deserialize(r);
+            }                     
         }
 
         /// <summary>

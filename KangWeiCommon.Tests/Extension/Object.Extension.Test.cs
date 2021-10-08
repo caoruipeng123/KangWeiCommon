@@ -69,14 +69,19 @@ namespace KangWeiCommon.Tests.Extension
             Assert.AreEqual(a.ToFloat(), 2.66f);
         }
         /// <summary>
-        /// TODO 后续处理
+        /// 
         /// </summary>
         [TestMethod]
         public void SerializeToXmlTest()
         {
-            Person Person = new Person { Name = "testName", Age = 29 };
-            string xmlStr = Person.SerializeToXml();
+            Person person = new Person { Name = "testName", Age = 29 };
+            string xmlStr = person.SerializeToXml();
             Console.WriteLine(xmlStr);
+
+            person = xmlStr.DeserializeXml<Person>();
+            Assert.IsNotNull(person);
+            Assert.AreEqual(person.Name ,"testName");
+            Assert.AreEqual(person.Age, 29);
         }
         /// <summary>
         /// TODO 后续在完善

@@ -453,11 +453,19 @@
         </member>
         <member name="M:KangWeiCommon.Extensions.SerializeToXml(System.Object)">
             <summary>
-            序列化对象为xml字符串
+            将对象序列化为xml字符串
             </summary>
             <param name="this">要序列化的对象</param>
             <remarks>被序列化的对象需要实现 <see cref="T:System.SerializableAttribute"/>特性 </remarks>
             <returns>xml格式字符串</returns>
+        </member>
+        <member name="M:KangWeiCommon.Extensions.DeserializeXml``1(System.String)">
+            <summary>
+            将字符串反序列化为对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="this">xml字符串</param>
+            <returns></returns>
         </member>
         <member name="M:KangWeiCommon.Extensions.To``1(System.Object)">
             <summary>
