@@ -12,16 +12,19 @@ namespace KangWeiCommon.DesignPattern
         /// 当前类的唯一实例
         /// </summary>
         private static T _instance;
+
         /// <summary>
         /// 全局锁 
         /// </summary>
         private static readonly object syslock = new object();
+
         /// <summary>
         /// 无参构造函数
         /// </summary>
         protected Singleton()
         {
         }
+
         /// <summary>
         /// 当前类的唯一实例
         /// </summary>
