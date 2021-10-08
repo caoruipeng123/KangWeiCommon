@@ -105,6 +105,22 @@
             <param name="dt">数据表</param>
             <returns></returns>
         </member>
+        <member name="T:KangWeiCommon.DesignPattern.Singleton`1">
+            <summary>
+            单例模式实现
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:KangWeiCommon.DesignPattern.Singleton`1.#ctor">
+            <summary>
+            无参构造函数
+            </summary>
+        </member>
+        <member name="P:KangWeiCommon.DesignPattern.Singleton`1.Instance">
+            <summary>
+            当前类的唯一实例
+            </summary>
+        </member>
         <member name="T:KangWeiCommon.Entity.PageModel`1">
             <summary>
             通用分页实体
@@ -828,6 +844,128 @@
             <typeparam name="T"></typeparam>
             <param name="paramName">参数名</param>
             <param name="input">输入值</param>
+        </member>
+        <member name="T:KangWeiCommon.IdWorker">
+            <summary>
+            雪花算法 自增Id生成器
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker.Twepoch">
+            <summary>
+            基准时间
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker.WorkerIdBits">
+            <summary>
+            机器标识位数 机器id 低5位
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker.DatacenterIdBits">
+            <summary>
+            数据标志位数 数据中心id 高5位
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker.SequenceBits">
+            <summary>
+            序列号识位数
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker.MaxWorkerId">
+            <summary>
+            机器ID最大值
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker.MaxDatacenterId">
+            <summary>
+            数据标志ID最大值
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker.SequenceMask">
+            <summary>
+            序列号ID最大值
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker.WorkerIdShift">
+            <summary>
+            机器ID偏左移12位
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker.DatacenterIdShift">
+            <summary>
+            数据ID偏左移17位
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker.TimestampLeftShift">
+            <summary>
+            时间毫秒左移22位
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker._sequence">
+            <summary>
+            序列号
+            </summary>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker._lastTimestamp">
+            <summary>
+            上一次生成Id的时间戳
+            </summary>
+        </member>
+        <member name="P:KangWeiCommon.IdWorker.WorkerId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:KangWeiCommon.IdWorker.DatacenterId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:KangWeiCommon.IdWorker.Sequence">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KangWeiCommon.IdWorker.#ctor(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="workerId">机器id</param>
+            <param name="datacenterId">数据中心id</param>
+            <param name="sequence"></param>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker._lock">
+            <summary>
+            全局锁
+            </summary>
+        </member>
+        <member name="M:KangWeiCommon.IdWorker.NextId">
+            <summary>
+            生成全局唯一Id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KangWeiCommon.IdWorker.TilNextMillis(System.Int64)">
+            <summary>
+            防止产生的时间比之前的时间还要小（由于NTP回拨等问题）,保持增量的趋势.
+            </summary>
+            <param name="lastTimestamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KangWeiCommon.IdWorker.TimeGen">
+            <summary>
+            获取当前的时间戳
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:KangWeiCommon.IdWorker.Jan1st1970">
+            <summary>
+            1970 utc时间
+            </summary>
+        </member>
+        <member name="T:KangWeiCommon.KangWeiUtil">
+            <summary>
+            通用辅助类
+            </summary>
         </member>
         <member name="M:KangWeiCommon.KangWeiUtil.IpToUInt(System.String)">
             <summary>
