@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -148,18 +149,24 @@ namespace KangWeiCommon
         }
 
         /// <summary>
-        /// 将字符串反序列化为对象
+        /// 对象序列化为json字符串
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="this">xml字符串</param>
-        /// <returns></returns>
-        public static T DeserializeXml<T>(this string @this)
+        /// <param name="this"></param>
+        /// <param name="encoding"></param>
+        /// <returns>Json字符串</returns>
+        public static string SerializeToJson<T>(this T @this, Encoding encoding=null)
         {
-            var x = new XmlSerializer(typeof(T));
-            using(var r = new StringReader(@this))
+            var serializer = new DataContractJsonSerializer(typeof(T));
+            if(encoding == null)
             {
-                return (T)x.Deserialize(r);
-            }                     
+                encoding = Encoding.Default;
+            }
+            using (var memoryStream = new MemoryStream())
+            {
+                serializer.WriteObject(memoryStream, @this);
+                return encoding.GetString(memoryStream.ToArray());
+            }
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace KangWeiCommon.Tests.Extension
@@ -83,6 +84,20 @@ namespace KangWeiCommon.Tests.Extension
             Assert.AreEqual(person.Name ,"testName");
             Assert.AreEqual(person.Age, 29);
         }
+
+        [TestMethod]
+        public void SerializeToJsonTest()
+        {
+            Person person = new Person { Name = "testName", Age = 29 };
+            string jsonStr = person.SerializeToJson();
+            Console.WriteLine(jsonStr);
+
+            person = jsonStr.DeserializeJson<Person>();
+            Assert.IsNotNull(person);
+            Assert.AreEqual(person.Name, "testName");
+            Assert.AreEqual(person.Age, 29);
+        }
+
         /// <summary>
         /// TODO 后续在完善
         /// </summary>
@@ -92,11 +107,14 @@ namespace KangWeiCommon.Tests.Extension
             //Person person = new Person();
             //Student student = person.To<Student>();
         }
-        [Serializable]
+        [Serializable, DataContract]
         public class Person
         {
+            [DataMember]
             public string Name { get; set; }
+            [DataMember]
             public int Age { get; set; }
+            [DataMember]
             public int Height { get; set; }
         }
         public class Student:Person

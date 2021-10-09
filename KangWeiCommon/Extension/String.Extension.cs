@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using System.Xml.Serialization;
 
 namespace KangWeiCommon
 {
@@ -440,5 +444,43 @@ namespace KangWeiCommon
             return str.Replace(" ", "").Replace("\r", "").Replace("\n", "");
         }
         #endregion
+
+        #region 反序列化
+        /// <summary>
+        /// 将xml字符串反序列化为对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="this">xml字符串</param>
+        /// <returns></returns>
+        public static T DeserializeXml<T>(this string @this)
+        {
+            var x = new XmlSerializer(typeof(T));
+            using (var r = new StringReader(@this))
+            {
+                return (T)x.Deserialize(r);
+            }
+        }
+
+        /// <summary>
+        /// 将json字符串反序列化为对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="this"></param>
+        /// <param name="encoding"></param>
+        /// <returns></returns>
+        public static T DeserializeJson<T>(this string @this, Encoding encoding = null)
+        {
+            var serializer = new DataContractJsonSerializer(typeof(T));
+            if (encoding == null)
+            {
+                encoding = Encoding.Default;
+            }
+            using (var stream = new MemoryStream(encoding.GetBytes(@this)))
+            {
+                return (T)serializer.ReadObject(stream);
+            }
+        }
+        #endregion
+
     }
 }
