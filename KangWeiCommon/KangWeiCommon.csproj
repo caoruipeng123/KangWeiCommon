@@ -21,7 +21,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <Compile Remove="DbUtil\DbUtil.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DbUtil\" />
   </ItemGroup>
 
 </Project>
