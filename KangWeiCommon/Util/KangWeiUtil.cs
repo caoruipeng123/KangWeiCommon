@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace KangWeiCommon
@@ -46,6 +50,82 @@ namespace KangWeiCommon
                    .Append('.')
                    .Append((number & 0xff))
                    .ToString();
+        }
+        /// <summary>
+        /// <para>列表导出CSV，支持Excel打开</para>
+        /// <para>默认情况下，设置Exel列名为属性名称。<see cref="CSVColumnAttribute"/>属性可以自定义列名</para>
+        /// <para>默认情况下，导出所有属性。如果有某些属性不需要导出，可以设置<see cref="CSVIgnoreAttribute"/>属性</para> 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="fileName">文件保存路径</param>
+        /// <exception cref="NullReferenceException"></exception>
+        public static void ExportCSV<T>(IEnumerable<T> list, string fileName)
+        {
+            if (list == null || !list.Any())
+            {
+                throw new NullReferenceException($"参数{nameof(list)}不能为空集合！");
+            }
+            Type type = typeof(T);
+            PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < properties.Length; i++)
+            {
+                var igonreAttribute = properties[i].GetCustomAttribute<CSVIgnoreAttribute>();
+                if (igonreAttribute != null)
+                {
+                    continue;
+                }
+                string name = properties[i].Name;
+                var nameAttribute = properties[i].GetCustomAttribute<CSVColumnAttribute>();
+                if (nameAttribute != null && !string.IsNullOrWhiteSpace(nameAttribute.Name))
+                {
+                    name = nameAttribute.Name;
+                }
+                if (i == properties.Length - 1)
+                {
+                    builder.Append(name);
+                }
+                else
+                {
+                    builder.Append(name + ",");
+                }
+            }
+            builder.AppendLine();
+            foreach (var item in list)
+            {
+                for (int i = 0; i < properties.Length; i++)
+                {
+                    var igonreAttribute = properties[i].GetCustomAttribute<CSVIgnoreAttribute>();
+                    if (igonreAttribute != null)
+                    {
+                        continue;
+                    }
+
+                    object value = properties[i].GetValue(item);
+                    if (i == properties.Length - 1)
+                    {
+                        builder.Append(value);
+                    }
+                    else
+                    {
+                        builder.Append(value + ",");
+                    }
+                }
+                builder.AppendLine();
+            }
+            File.WriteAllText(fileName, builder.ToString());
+        }
+        /// <summary>
+        /// 读取csv文件并转换为集合
+        /// todo caoruipeng
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        private static List<T> ImportCSV<T>(string fileName)
+        {
+            return null;
         }
     }
 }

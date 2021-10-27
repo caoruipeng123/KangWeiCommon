@@ -24,5 +24,29 @@ namespace KangWeiCommon.Tests
             }
 
         }
+        /// <summary>
+        /// CSV文件导出
+        /// </summary>
+        [TestMethod]
+        public void ExportCSVTest()
+        {
+            List<CSVDemo> list = new List<CSVDemo>();
+            CSVDemo d1 = new CSVDemo() { Id = "1", Name = "name1", Age = 1 };
+            list.Add(d1);
+            CSVDemo d2 = new CSVDemo() { Id = "2", Name = "name2", Age = 2 };
+            list.Add(d2);
+            string fileName = $"testcsv.csv";
+            KangWeiUtil.ExportCSV(list, fileName);
+        }
+
+    }
+    public class CSVDemo
+    {
+        [CSVColumn("Id")]
+        public string Id { get; set; }
+        [CSVColumn("名称")]
+        public string Name { get; set; }
+        [CSVColumn("年龄")]
+        public int Age { get; set; }
     }
 }

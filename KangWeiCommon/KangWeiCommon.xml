@@ -4,6 +4,27 @@
         <name>KangWeiCommon</name>
     </assembly>
     <members>
+        <member name="T:KangWeiCommon.CSVColumnAttribute">
+            <summary>
+            设置导出CSV的列名
+            </summary>
+        </member>
+        <member name="M:KangWeiCommon.CSVColumnAttribute.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="P:KangWeiCommon.CSVColumnAttribute.Name">
+            <summary>
+            列名
+            </summary>
+        </member>
+        <member name="T:KangWeiCommon.CSVIgnoreAttribute">
+            <summary>
+            CSV导出的时候忽略列名
+            </summary>
+        </member>
         <member name="T:KangWeiCommon.DesignPattern.Singleton`1">
             <summary>
             单例模式实现
@@ -928,6 +949,17 @@
             </summary>
             <param name="number"></param>
             <returns></returns>
+        </member>
+        <member name="M:KangWeiCommon.KangWeiUtil.ExportCSV``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            <para>列表导出CSV，支持Excel打开</para>
+            <para>默认情况下，设置Exel列名为属性名称。<see cref="T:KangWeiCommon.CSVColumnAttribute"/>属性可以自定义列名</para>
+            <para>默认情况下，导出所有属性。如果有某些属性不需要导出，可以设置<see cref="T:KangWeiCommon.CSVIgnoreAttribute"/>属性</para> 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <param name="fileName">文件保存路径</param>
+            <exception cref="T:System.NullReferenceException"></exception>
         </member>
     </members>
 </doc>
