@@ -961,5 +961,14 @@
             <param name="fileName">文件保存路径</param>
             <exception cref="T:System.NullReferenceException"></exception>
         </member>
+        <member name="M:KangWeiCommon.KangWeiUtil.ImportCSV``1(System.String)">
+            <summary>
+            读取csv文件并转换为集合
+            todo caoruipeng
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
