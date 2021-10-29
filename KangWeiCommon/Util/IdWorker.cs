@@ -104,7 +104,7 @@ namespace KangWeiCommon
         /// 生成全局唯一Id
         /// </summary>
         /// <returns></returns>
-        public virtual long NextId()
+        public long NextId()
         {
             lock (_lock)
             {
@@ -143,7 +143,7 @@ namespace KangWeiCommon
         /// </summary>
         /// <param name="lastTimestamp"></param>
         /// <returns></returns>
-        protected virtual long TilNextMillis(long lastTimestamp)
+        private long TilNextMillis(long lastTimestamp)
         {
             var timestamp = TimeGen();
             while (timestamp <= lastTimestamp)
@@ -157,7 +157,7 @@ namespace KangWeiCommon
         /// 获取当前的时间戳
         /// </summary>
         /// <returns></returns>
-        protected virtual long TimeGen()
+        private long TimeGen()
         {
             return (long)(DateTime.UtcNow - Jan1st1970).TotalMilliseconds;
         }

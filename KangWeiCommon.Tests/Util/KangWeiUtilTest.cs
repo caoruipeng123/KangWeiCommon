@@ -37,8 +37,17 @@ namespace KangWeiCommon.Tests
             list.Add(d2);
             string fileName = $"testcsv.csv";
             KangWeiUtil.ExportCSV(list, fileName);
-        }
 
+            List<CSVDemo> imports = KangWeiUtil.ImportCSV<CSVDemo>(fileName);
+            Assert.IsNotNull(imports);
+            Assert.AreEqual(imports[0].Id , "1");
+            Assert.AreEqual(imports[0].Name, "name1");
+            Assert.AreEqual(imports[0].Age, "1");
+
+            Assert.AreEqual(imports[1].Id, "2");
+            Assert.AreEqual(imports[1].Name, "name2");
+            Assert.AreEqual(imports[1].Age, "2");
+        }
     }
     public class CSVDemo
     {

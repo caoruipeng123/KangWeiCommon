@@ -33,7 +33,7 @@ namespace KangWeiCommon
             ret = ((arr[3] & 0xff) | ret);
             return ret;
         }
-       
+
         /// <summary>
         /// int转换为ip地址
         /// </summary>
@@ -52,7 +52,7 @@ namespace KangWeiCommon
                    .ToString();
         }
         /// <summary>
-        /// <para>列表导出CSV，支持Excel打开</para>
+        /// <para>列表导出为CSV文件，支持Excel打开</para>
         /// <para>默认情况下，设置Exel列名为属性名称。<see cref="CSVColumnAttribute"/>属性可以自定义列名</para>
         /// <para>默认情况下，导出所有属性。如果有某些属性不需要导出，可以设置<see cref="CSVIgnoreAttribute"/>属性</para> 
         /// </summary>
@@ -69,19 +69,24 @@ namespace KangWeiCommon
             Type type = typeof(T);
             PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
             StringBuilder builder = new StringBuilder();
+            //导出列名
             for (int i = 0; i < properties.Length; i++)
             {
+                //是否忽略
                 var igonreAttribute = properties[i].GetCustomAttribute<CSVIgnoreAttribute>();
                 if (igonreAttribute != null)
                 {
                     continue;
                 }
+
+                //获取列名
                 string name = properties[i].Name;
                 var nameAttribute = properties[i].GetCustomAttribute<CSVColumnAttribute>();
                 if (nameAttribute != null && !string.IsNullOrWhiteSpace(nameAttribute.Name))
                 {
                     name = nameAttribute.Name;
                 }
+
                 if (i == properties.Length - 1)
                 {
                     builder.Append(name);
@@ -91,7 +96,8 @@ namespace KangWeiCommon
                     builder.Append(name + ",");
                 }
             }
-            builder.AppendLine();
+            builder.Append(Environment.NewLine);
+            //导出内容
             foreach (var item in list)
             {
                 for (int i = 0; i < properties.Length; i++)
@@ -112,20 +118,71 @@ namespace KangWeiCommon
                         builder.Append(value + ",");
                     }
                 }
-                builder.AppendLine();
+                builder.Append(Environment.NewLine);
             }
-            File.WriteAllText(fileName, builder.ToString());
+            File.WriteAllText(fileName, builder.ToString(), Encoding.UTF8);
         }
         /// <summary>
         /// 读取csv文件并转换为集合
-        /// todo caoruipeng
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="fileName"></param>
+        /// <param name="fileName">csv文件路径</param>
+        /// <exception cref="Exception">找不到路径</exception>
         /// <returns></returns>
-        private static List<T> ImportCSV<T>(string fileName)
+        public static List<T> ImportCSV<T>(string fileName) where T : new()
         {
-            return null;
+            if (!File.Exists(fileName))
+            {
+                throw new Exception($"找不到路径{fileName}");
+            }
+            string[] array = File.ReadAllLines(fileName, Encoding.UTF8);
+            if (array == null || array.Length <= 0)
+            {
+                throw new Exception($"文件内容不能为空！");
+            }
+            //第一行为表头
+            if (array.Length == 1)
+            {
+                return null;
+            }
+            List<string> headers = array[0].Split(',').ToList();
+            Type type = typeof(T);
+            PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            //每一列对应哪个属性
+            List<(int Index, PropertyInfo Property)> infos = new List<(int Index, PropertyInfo Property)>();
+            for (int i = 0; i < headers.Count; i++)
+            {
+                var property = properties.FirstOrDefault(e =>
+                e.Name == headers[i] || e.GetCustomAttribute<CSVColumnAttribute>()?.Name == headers[i]);
+                if (property == null)
+                {
+                    throw new Exception($"列名{headers[i]}在类型{typeof(T)}中找不到对应的属性！");
+                }
+                //忽略
+                if (property.GetCustomAttribute<CSVIgnoreAttribute>() != null)
+                {
+                    continue;
+                }
+                infos.Add((i, property));
+            }
+            infos.TrimExcess();
+
+            List<T> list = new List<T>();
+            for (int i = 1; i < array.Length; i++)
+            {
+                string[] textArray = array[i].Split(',');
+                if (textArray == null || textArray.Length != headers.Count)
+                {
+                    throw new Exception($"第{i}行文件内容不能为空或者长度必须为{headers.Count},实际长度为:{textArray?.Length ?? 0}！");
+                }
+                T item = new T();
+                foreach (var info in infos)
+                {
+                    info.Property.SetValue(item, textArray[i].To(info.Property.GetType()));
+                }
+                list.Add(item);
+            }
+            return list;
         }
     }
 }
