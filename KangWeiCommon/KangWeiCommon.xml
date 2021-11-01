@@ -466,6 +466,7 @@
             字符串转换为Decimal类型，如果转换失败，返回0
             </summary>
             <param name="str"></param>
+            <param name="defaultValue"></param>
             <returns></returns>
         </member>
         <member name="M:KangWeiCommon.Extensions.ToDecimal(System.String,System.Int32)">
@@ -496,6 +497,7 @@
             字符串转换为Float类型，如果转换失败，返回defaultValue
             </summary>
             <param name="str"></param>
+            <param name="defaultValue"></param>
             <returns></returns>
         </member>
         <member name="M:KangWeiCommon.Extensions.IsDouble(System.String)">
@@ -518,6 +520,7 @@
             字符串转换为double类型。如果转换失败，返回0
             </summary>
             <param name="str"></param>
+            <param name="defaultValue"></param>
             <returns></returns>
         </member>
         <member name="M:KangWeiCommon.Extensions.IsShort(System.String)">
@@ -540,6 +543,7 @@
             字符串转换为Short类型(Int16类型)。如果转换失败，返回指定的默认值
             </summary>
             <param name="str"></param>
+            <param name="defaultValue"></param>
             <returns></returns>
         </member>
         <member name="M:KangWeiCommon.Extensions.IsInt(System.String)">
@@ -592,6 +596,7 @@
             字符串转换为Long类型(int64)
             </summary>
             <param name="str"></param>
+            <param name="defaultValue"></param>
             <returns></returns>
         </member>
         <member name="M:KangWeiCommon.Extensions.ToDateTime(System.String,System.String)">
@@ -599,6 +604,7 @@
             字符串转换为DateTime类型。
             </summary>
             <param name="str"></param>
+            <param name="format"></param>
             <returns></returns>
         </member>
         <member name="M:KangWeiCommon.Extensions.ToDateTimeOrNull(System.String)">

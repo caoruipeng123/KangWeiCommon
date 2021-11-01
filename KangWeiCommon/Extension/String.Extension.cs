@@ -90,11 +90,12 @@ namespace KangWeiCommon
         {
             return decimal.TryParse(str, out returnValue);
         }
-      
+
         /// <summary>
         /// 字符串转换为Decimal类型，如果转换失败，返回0
         /// </summary>
         /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
         public static decimal ToDecimal(this string str, decimal defaultValue = 0)
         {
@@ -136,11 +137,12 @@ namespace KangWeiCommon
         {
             return float.TryParse(str, out returnValue);
         }
-       
+
         /// <summary>
         /// 字符串转换为Float类型，如果转换失败，返回defaultValue
         /// </summary>
         /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
         public static float ToFloat(this string str, float defaultValue = 0)
         {
@@ -169,11 +171,12 @@ namespace KangWeiCommon
         {
             return double.TryParse(str, out returnValue);
         }
-      
+
         /// <summary>
         /// 字符串转换为double类型。如果转换失败，返回0
         /// </summary>
         /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
         public static double ToDouble(this string str, double defaultValue = 0)
         {
@@ -202,11 +205,12 @@ namespace KangWeiCommon
         {
             return short.TryParse(str, out returnValue);
         }
-      
+
         /// <summary>
         /// 字符串转换为Short类型(Int16类型)。如果转换失败，返回指定的默认值
         /// </summary>
         /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
         public static short ToShort(this string str, short defaultValue = 0)
         {
@@ -286,11 +290,12 @@ namespace KangWeiCommon
         {
             return long.TryParse(str, out returnValue);
         }
-       
+
         /// <summary>
         /// 字符串转换为Long类型(int64)
         /// </summary>
         /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
         public static long ToLong(this string str, long defaultValue = 0)
         {
@@ -303,6 +308,7 @@ namespace KangWeiCommon
         /// 字符串转换为DateTime类型。
         /// </summary>
         /// <param name="str"></param>
+        /// <param name="format"></param>
         /// <returns></returns>
         public static DateTime ToDateTime(this string str, string format = "yyyyMMddHHmmss")
         {

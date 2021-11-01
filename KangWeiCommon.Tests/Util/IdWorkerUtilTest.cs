@@ -31,7 +31,7 @@ namespace KangWeiCommon.Tests.Util
             {
                 IdWorkerUtil.SetConfig(1, 1);
             }
-            catch (Exception ex)
+            catch
             {
                 flag = true;
             }
