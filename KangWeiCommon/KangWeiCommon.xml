@@ -930,6 +930,29 @@
             1970.1.1 utc时间
             </summary>
         </member>
+        <member name="T:KangWeiCommon.IdWorkerUtil">
+            <summary>
+            生成IdWorker辅助类
+            </summary>
+        </member>
+        <member name="M:KangWeiCommon.IdWorkerUtil.SetConfig(System.Int64,System.Int64)">
+            <summary>
+            设置节点Id和数据中心Id，该方法全局调用一次即可。如果不掉用过，默认workerId=1，datacenterId=1
+            </summary>
+            <param name="workerId"></param>
+            <param name="datacenterId"></param>
+        </member>
+        <member name="M:KangWeiCommon.IdWorkerUtil.GetNextId">
+            <summary>
+            生成全局唯一Id[曹瑞鹏]
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:KangWeiCommon.IdWorkerUtil.Worker">
+            <summary>
+            返回IdWorker的唯一实例
+            </summary>
+        </member>
         <member name="T:KangWeiCommon.KangWeiUtil">
             <summary>
             通用辅助类
@@ -952,7 +975,7 @@
         </member>
         <member name="M:KangWeiCommon.KangWeiUtil.ExportCSV``1(System.Collections.Generic.IEnumerable{``0},System.String)">
             <summary>
-            <para>列表导出CSV，支持Excel打开</para>
+            <para>列表导出为CSV文件，支持Excel打开</para>
             <para>默认情况下，设置Exel列名为属性名称。<see cref="T:KangWeiCommon.CSVColumnAttribute"/>属性可以自定义列名</para>
             <para>默认情况下，导出所有属性。如果有某些属性不需要导出，可以设置<see cref="T:KangWeiCommon.CSVIgnoreAttribute"/>属性</para> 
             </summary>
@@ -964,10 +987,18 @@
         <member name="M:KangWeiCommon.KangWeiUtil.ImportCSV``1(System.String)">
             <summary>
             读取csv文件并转换为集合
-            todo caoruipeng
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="fileName"></param>
+            <param name="fileName">csv文件路径</param>
+            <exception cref="T:System.Exception">找不到路径</exception>
+            <returns></returns>
+        </member>
+        <member name="M:KangWeiCommon.KangWeiUtil.ConvertType``1(System.Object)">
+            <summary>
+            类型转换
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="val"></param>
             <returns></returns>
         </member>
     </members>

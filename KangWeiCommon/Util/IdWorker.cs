@@ -130,7 +130,7 @@ namespace KangWeiCommon
                 {
                     //如果和上次生成时间不同,重置sequence，就是下一毫秒开始，sequence计数重新从0开始累加,
                     //为了保证尾数随机性更大一些,最后一位可以设置一个随机数
-                    _sequence = 0;//new Random().Next(10);
+                    _sequence = 0;
                 }
 
                 _lastTimestamp = timestamp;

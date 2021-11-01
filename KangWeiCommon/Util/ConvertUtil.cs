@@ -8,7 +8,7 @@ namespace KangWeiCommon.Util
 {
     public class ConvertUtil
     {
-        public int Converter(string input)
+        private int Converter(string input)
         {
             return Convert.ToInt32(input);
         }

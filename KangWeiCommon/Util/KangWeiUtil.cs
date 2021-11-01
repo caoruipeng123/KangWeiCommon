@@ -51,6 +51,7 @@ namespace KangWeiCommon
                    .Append((number & 0xff))
                    .ToString();
         }
+
         /// <summary>
         /// <para>列表导出为CSV文件，支持Excel打开</para>
         /// <para>默认情况下，设置Exel列名为属性名称。<see cref="CSVColumnAttribute"/>属性可以自定义列名</para>
@@ -122,6 +123,7 @@ namespace KangWeiCommon
             }
             File.WriteAllText(fileName, builder.ToString(), Encoding.UTF8);
         }
+
         /// <summary>
         /// 读取csv文件并转换为集合
         /// </summary>
@@ -165,7 +167,6 @@ namespace KangWeiCommon
                 }
                 infos.Add((i, property));
             }
-            infos.TrimExcess();
 
             List<T> list = new List<T>();
             for (int i = 1; i < array.Length; i++)
@@ -178,11 +179,62 @@ namespace KangWeiCommon
                 T item = new T();
                 foreach (var info in infos)
                 {
-                    info.Property.SetValue(item, textArray[i].To(info.Property.GetType()));
+                    info.Property.SetValue(item, Convert.ChangeType(textArray[info.Index], info.Property.PropertyType));
                 }
                 list.Add(item);
             }
             return list;
+        }
+
+        /// <summary>
+        /// 类型转换
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        private static T ConvertType<T>(object val)
+        {
+            if (val == null)
+            {
+                return default(T);
+            }
+            Type type = typeof(T);
+            if (type == val.GetType())
+            {
+                return (T)val;
+            }
+            if (type == typeof(string))
+            {
+                return (T)val;
+            }
+            //枚举
+            if (type.IsEnum)
+            {
+                if (val is string)
+                    return (T)Enum.Parse(type, val.ToString());
+                else
+                    return (T)Enum.ToObject(type, val);
+            }
+            //泛型
+            if (!type.IsInterface && type.IsGenericType)
+            {
+                //Type innerType = type.GetGenericArguments()[0];
+                //object innerValue = ChangeType(val, innerType);
+                //return Activator.CreateInstance(type, new object[] { innerValue });
+            }
+            if (val is string && type == typeof(Guid))
+            {
+                //return new Guid(val as string);
+            }
+            if (val is string && type == typeof(Version))
+            {
+                //return new Version(val as string);
+            }
+            if (!(val is IConvertible))
+            {
+                return default(T);
+            }
+            return (T)Convert.ChangeType(val, type);
         }
     }
 }

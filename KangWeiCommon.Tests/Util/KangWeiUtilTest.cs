@@ -42,12 +42,45 @@ namespace KangWeiCommon.Tests
             Assert.IsNotNull(imports);
             Assert.AreEqual(imports[0].Id , "1");
             Assert.AreEqual(imports[0].Name, "name1");
-            Assert.AreEqual(imports[0].Age, "1");
+            Assert.AreEqual(imports[0].Age, 1);
 
             Assert.AreEqual(imports[1].Id, "2");
             Assert.AreEqual(imports[1].Name, "name2");
-            Assert.AreEqual(imports[1].Age, "2");
+            Assert.AreEqual(imports[1].Age, 2);
         }
+        //[TestMethod]
+        //public void ConvertTypeTest()
+        //{
+        //    var types = TypeCode.Char;
+        //    string val = "true";
+
+        //    object obj = KangWeiUtil.ConvertType<bool>(val);
+        //    Assert.AreEqual(obj, true);
+
+        //    val = "false";
+        //    obj = KangWeiUtil.ConvertType<bool>(val);
+        //    Assert.AreEqual(obj, false);
+
+        //    val = "f";
+        //    obj = KangWeiUtil.ConvertType<char>(val);
+        //    Assert.AreEqual(obj, 'f');
+
+        //    val = "3";
+        //    obj = KangWeiUtil.ConvertType<sbyte>(val);
+        //    Assert.AreEqual(obj, (sbyte)3);
+
+        //    val = "4";
+        //    obj = KangWeiUtil.ConvertType<byte>(val);
+        //    Assert.AreEqual(obj, (byte)4);
+
+        //    val = "5";
+        //    obj = KangWeiUtil.ConvertType<Int16>(val);
+        //    Assert.AreEqual(obj, (Int16)5);
+
+        //    val = "6";
+        //    obj = KangWeiUtil.ConvertType<UInt16>(val);
+        //    Assert.AreEqual(obj, (UInt16)6);
+        //}
     }
     public class CSVDemo
     {
