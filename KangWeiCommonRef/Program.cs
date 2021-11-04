@@ -9,6 +9,8 @@ namespace KangWeiCommonRef
     {
         static void Main(string[] args)
         {
+            string text = "a=re=6";
+            string[] array = text.Split('=');
             Console.ReadLine();
         }
        public class Demo

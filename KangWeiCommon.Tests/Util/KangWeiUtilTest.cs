@@ -15,15 +15,15 @@ namespace KangWeiCommon.Tests
         public void IpUIntTest()
         {
             Random random = new Random();
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
-                string ip = $"{random.Next(1,215)}.{random.Next(1, 215)}.{random.Next(1, 215)}.{random.Next(1, 215)}";
+                string ip = $"{random.Next(1, 215)}.{random.Next(1, 215)}.{random.Next(1, 215)}.{random.Next(1, 215)}";
                 uint ipNumber = KangWeiUtil.IpToUInt(ip);
                 string ips = KangWeiUtil.UIntToIp(ipNumber);
                 Assert.AreEqual(ip, ips);
             }
-
         }
+
         /// <summary>
         /// CSV文件导出
         /// </summary>
@@ -40,47 +40,26 @@ namespace KangWeiCommon.Tests
 
             List<CSVDemo> imports = KangWeiUtil.ImportCSV<CSVDemo>(fileName);
             Assert.IsNotNull(imports);
-            Assert.AreEqual(imports[0].Id , "1");
+            Assert.AreEqual(imports[0].Id, "1");
             Assert.AreEqual(imports[0].Name, "name1");
             Assert.AreEqual(imports[0].Age, 1);
 
             Assert.AreEqual(imports[1].Id, "2");
             Assert.AreEqual(imports[1].Name, "name2");
             Assert.AreEqual(imports[1].Age, 2);
+        }       
+
+        /// <summary>
+        /// 配置文件导出
+        /// </summary>
+        [TestMethod]
+        public void ReadConfigTest()
+        {
+            string fileName = "doc/defaults.properties";
+            Dictionary<string, string> dic = KangWeiUtil.ReadConfig(fileName);
+            Assert.IsNotNull(dic);
+            Assert.IsTrue(dic.Count > 0);
         }
-        //[TestMethod]
-        //public void ConvertTypeTest()
-        //{
-        //    var types = TypeCode.Char;
-        //    string val = "true";
-
-        //    object obj = KangWeiUtil.ConvertType<bool>(val);
-        //    Assert.AreEqual(obj, true);
-
-        //    val = "false";
-        //    obj = KangWeiUtil.ConvertType<bool>(val);
-        //    Assert.AreEqual(obj, false);
-
-        //    val = "f";
-        //    obj = KangWeiUtil.ConvertType<char>(val);
-        //    Assert.AreEqual(obj, 'f');
-
-        //    val = "3";
-        //    obj = KangWeiUtil.ConvertType<sbyte>(val);
-        //    Assert.AreEqual(obj, (sbyte)3);
-
-        //    val = "4";
-        //    obj = KangWeiUtil.ConvertType<byte>(val);
-        //    Assert.AreEqual(obj, (byte)4);
-
-        //    val = "5";
-        //    obj = KangWeiUtil.ConvertType<Int16>(val);
-        //    Assert.AreEqual(obj, (Int16)5);
-
-        //    val = "6";
-        //    obj = KangWeiUtil.ConvertType<UInt16>(val);
-        //    Assert.AreEqual(obj, (UInt16)6);
-        //}
     }
     public class CSVDemo
     {

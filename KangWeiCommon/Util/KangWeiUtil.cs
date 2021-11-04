@@ -187,54 +187,44 @@ namespace KangWeiCommon
         }
 
         /// <summary>
-        /// 类型转换
+        /// 读取配置文件，配置文件格式为普通文本格式。配置文件中注释用#开头，配置项直接用key=value表示。如下：
+        /// <para>#这里是配置项注释</para>
+        /// <para>host=192.168.10.211</para>
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="val"></param>
         /// <returns></returns>
-        private static T ConvertType<T>(object val)
+        public static Dictionary<string, string> ReadConfig(string fileName)
         {
-            if (val == null)
+            if (!File.Exists(fileName))
             {
-                return default(T);
+                throw new Exception($"找不到路径{fileName}");
             }
-            Type type = typeof(T);
-            if (type == val.GetType())
+            string[] array = File.ReadAllLines(fileName, Encoding.UTF8);
+            if (array == null || array.Length <= 0)
             {
-                return (T)val;
+                throw new Exception($"文件内容不能为空！");
             }
-            if (type == typeof(string))
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            foreach (string str in array)
             {
-                return (T)val;
+                if (str.IsNullOrEmpty())
+                {
+                    continue;
+                }
+                if (!str.StartsWith("#"))
+                {
+                    string[] splitArray = str.Split('=');
+                    if (splitArray == null || splitArray.Length < 1)
+                    {
+                        throw new Exception($"以下配置项错误:{str}");
+                    }
+                    if (splitArray[0].IsNullOrEmpty())
+                    {
+                        throw new Exception($"配置项key不能为空:{str}");
+                    }
+                    dic.Add(splitArray[0].Trim(), str.Substring(splitArray[0].Length)?.Trim());
+                }
             }
-            //枚举
-            if (type.IsEnum)
-            {
-                if (val is string)
-                    return (T)Enum.Parse(type, val.ToString());
-                else
-                    return (T)Enum.ToObject(type, val);
-            }
-            //泛型
-            if (!type.IsInterface && type.IsGenericType)
-            {
-                //Type innerType = type.GetGenericArguments()[0];
-                //object innerValue = ChangeType(val, innerType);
-                //return Activator.CreateInstance(type, new object[] { innerValue });
-            }
-            if (val is string && type == typeof(Guid))
-            {
-                //return new Guid(val as string);
-            }
-            if (val is string && type == typeof(Version))
-            {
-                //return new Version(val as string);
-            }
-            if (!(val is IConvertible))
-            {
-                return default(T);
-            }
-            return (T)Convert.ChangeType(val, type);
+            return dic;
         }
     }
 }
