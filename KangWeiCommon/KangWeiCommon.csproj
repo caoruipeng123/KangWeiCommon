@@ -9,8 +9,8 @@
     <RepositoryType>github</RepositoryType>
     <RepositoryUrl>https://github.com/caoruipeng123/KangWeiCommon</RepositoryUrl>
     <Description>该类库为C#/.NET公共基础类库，项目开源免费，目前已经公司线上环境使用，欢迎大家使用！</Description>
-    <PackageReleaseNotes>1、csv文件导入导出优化和完善。</PackageReleaseNotes>
-    <Version>1.0.11</Version>
+    <PackageReleaseNotes>新增集合类扩展方法Join</PackageReleaseNotes>
+    <Version>1.0.12</Version>
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
   </PropertyGroup>

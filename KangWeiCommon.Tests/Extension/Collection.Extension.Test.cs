@@ -41,5 +41,13 @@ namespace KangWeiCommon.Tests.Extension
             array = new string[1] { "111" };
             Assert.AreEqual(array.HasNotLength(), false);
         }
+
+        [TestMethod]
+        public void JoinTest()
+        {
+            string[] array =new string[] { "33","66","99"};
+            string str = array.Join("|",true);
+            Assert.IsNotNull(str);
+        }
     }
 }

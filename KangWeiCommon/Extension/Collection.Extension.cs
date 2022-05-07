@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace KangWeiCommon
 {
@@ -35,6 +36,24 @@ namespace KangWeiCommon
             }
             var a = collection.GetEnumerator();
             return !a.MoveNext();
+        }
+
+        /// <summary>
+        /// 将集合中的字符串用指定字符串拼接起来
+        /// </summary>
+        /// <param name="strList"></param>
+        /// <param name="split">字符串拼接符</param>
+        /// <param name="appendNullStr">是否拼接空字符串，默认拼接</param>
+        /// <returns></returns>
+        public static string Join(this IEnumerable<string> strList, string split, bool appendNullStr = true)
+        {
+            StringBuilder sb = new StringBuilder();
+            IEnumerator<string> enumerator = strList.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                sb.Append(split+ enumerator.Current);
+            }
+            return sb.ToString().Substring(1);
         }
     }
 }
