@@ -47,7 +47,7 @@ namespace KangWeiCommon.Tests
             Assert.AreEqual(imports[1].Id, "2");
             Assert.AreEqual(imports[1].Name, "name2");
             Assert.AreEqual(imports[1].Age, 2);
-        }       
+        }
 
         /// <summary>
         /// 配置文件导出
@@ -59,6 +59,13 @@ namespace KangWeiCommon.Tests
             Dictionary<string, string> dic = KangWeiUtil.ReadConfig(fileName);
             Assert.IsNotNull(dic);
             Assert.IsTrue(dic.Count > 0);
+        }
+
+        [TestMethod]
+        public void TimespanTest()
+        {
+            long timetamp = KangWeiUtil.GetTimestamp();
+            Assert.IsTrue(timetamp > 0);
         }
     }
     public class CSVDemo

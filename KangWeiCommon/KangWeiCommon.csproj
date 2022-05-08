@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net5.0;netcoreapp3.1;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>caoruipeng</Authors>
     <Company>山西康维思辰科技有限公司</Company>
@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/caoruipeng123/KangWeiCommon</RepositoryUrl>
     <Description>该类库为C#/.NET公共基础类库，项目开源免费，目前已经公司线上环境使用，欢迎大家使用！</Description>
     <PackageReleaseNotes>新增集合类扩展方法Join</PackageReleaseNotes>
-    <Version>1.0.12</Version>
+    <Version>1.0.13</Version>
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
   </PropertyGroup>
