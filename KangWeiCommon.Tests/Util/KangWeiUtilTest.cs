@@ -67,6 +67,12 @@ namespace KangWeiCommon.Tests
             long timetamp = KangWeiUtil.GetTimestamp();
             Assert.IsTrue(timetamp > 0);
         }
+        [TestMethod]
+        public void TimespanTestTwo()
+        {
+            long timetamp = KangWeiUtil.GetTimestamp(new DateTime(2019, 01, 01, 1, 1, 1));
+            Assert.IsTrue(timetamp > 0);
+        }
     }
     public class CSVDemo
     {

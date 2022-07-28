@@ -230,12 +230,22 @@ namespace KangWeiCommon
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         /// <summary>
-        /// 获取时间戳 单位毫秒
+        /// 获取当前时间戳 单位毫秒
         /// </summary>
         /// <returns></returns>
         public static long GetTimestamp()
         {
             return (long)(DateTime.UtcNow - Jan1st1970).TotalMilliseconds;
+        }
+
+        /// <summary>
+        /// 获取指定时间的时间戳
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public static long GetTimestamp(DateTime time)
+        {
+            return (long)((new DateTimeOffset(time).UtcDateTime) - Jan1st1970).TotalMilliseconds;
         }
     }
 }
