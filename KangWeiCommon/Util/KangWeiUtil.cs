@@ -254,7 +254,9 @@ namespace KangWeiCommon
         /// <returns></returns>
         public static DateTime GetDateTime(long timestamp)
         {
-            return TimeZoneInfo.Local.get(Jan1st1970.AddMilliseconds(timestamp));
+            //将utc时间转换为本地时间
+            DateTime startTime = TimeZoneInfo.ConvertTime(Jan1st1970, TimeZoneInfo.FindSystemTimeZoneById(TimeZoneInfo.Local.Id));
+            return startTime.AddMilliseconds(timestamp);
         }
     }
 }

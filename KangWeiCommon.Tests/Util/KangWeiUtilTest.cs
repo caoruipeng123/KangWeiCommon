@@ -79,6 +79,7 @@ namespace KangWeiCommon.Tests
         {
             long timetamp = KangWeiUtil.GetTimestamp(new DateTime(2019, 01, 01, 1, 1, 1));
             DateTime time = KangWeiUtil.GetDateTime(timetamp);
+            Assert.IsTrue(time == new DateTime(2019, 01, 01, 1, 1, 1));
         }
     }
     public class CSVDemo
