@@ -12,6 +12,7 @@ namespace KangWeiCommon
     /// </summary>
     public class KangWeiUtil
     {
+        private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         /// <summary>
         /// ip地址转换为UInt类型
         /// </summary>
@@ -227,8 +228,6 @@ namespace KangWeiCommon
             return dic;
         }
 
-        private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-
         /// <summary>
         /// 获取当前时间戳 单位毫秒
         /// </summary>
@@ -246,6 +245,16 @@ namespace KangWeiCommon
         public static long GetTimestamp(DateTime time)
         {
             return (long)((new DateTimeOffset(time).UtcDateTime) - Jan1st1970).TotalMilliseconds;
+        }
+
+        /// <summary>
+        /// 时间戳转换为时间
+        /// </summary>
+        /// <param name="timestamp"></param>
+        /// <returns></returns>
+        public static DateTime GetDateTime(long timestamp)
+        {
+            return TimeZoneInfo.Local.get(Jan1st1970.AddMilliseconds(timestamp));
         }
     }
 }
