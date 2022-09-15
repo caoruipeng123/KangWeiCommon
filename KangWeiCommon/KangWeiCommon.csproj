@@ -9,10 +9,10 @@
     <RepositoryType>github</RepositoryType>
     <RepositoryUrl>https://github.com/caoruipeng123/KangWeiCommon</RepositoryUrl>
     <Description>该类库为C#/.NET公共基础类库，项目开源免费，目前已经公司线上环境使用，欢迎大家使用！</Description>
-    <PackageReleaseNotes>新增集合类扩展方法Join</PackageReleaseNotes>
-    <Version>1.0.15</Version>
-    <AssemblyVersion>1.0.10.0</AssemblyVersion>
-    <FileVersion>1.0.10.0</FileVersion>
+    <PackageReleaseNotes>新增获取本周时间的第一天和最后一天</PackageReleaseNotes>
+    <Version>1.0.16</Version>
+    <AssemblyVersion>1.0.16</AssemblyVersion>
+    <FileVersion>1.0.16</FileVersion>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 

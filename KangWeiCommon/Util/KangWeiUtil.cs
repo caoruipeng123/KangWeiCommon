@@ -258,5 +258,40 @@ namespace KangWeiCommon
             DateTime startTime = TimeZoneInfo.ConvertTime(Jan1st1970, TimeZoneInfo.FindSystemTimeZoneById(TimeZoneInfo.Local.Id));
             return startTime.AddMilliseconds(timestamp);
         }
+
+        /// <summary>
+        /// 获取某个时间所在的本周第一天（星期一为第一天）
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static DateTime GetWeekFirst(DateTime dateTime)
+        {
+            //星期一为第一天  
+            int weeknow = Convert.ToInt32(dateTime.DayOfWeek);
+
+            //因为是以星期一为第一天，所以要判断weeknow等于0时，要向前推6天。  
+            weeknow = (weeknow == 0 ? (7 - 1) : (weeknow - 1));
+            int daydiff = (-1) * weeknow;
+
+            //本周第一天  
+            string FirstDay = dateTime.AddDays(daydiff).ToString("yyyy-MM-dd");
+            return Convert.ToDateTime(FirstDay);
+        }
+
+        /// <summary>
+        /// 获取某个时间所在的本周最后一天（星期天为第一天） 示例:2022-09
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static DateTime GetWeekLast(DateTime dateTime)
+        {
+            int weeknow = Convert.ToInt32(dateTime.DayOfWeek);
+            weeknow = (weeknow == 0 ? 7 : weeknow);
+            int daydiff = (7 - weeknow);
+
+            //本周最后一天  
+            string LastDay = dateTime.AddDays(daydiff).ToString("yyyy-MM-dd");
+            return Convert.ToDateTime(LastDay);
+        }
     }
 }

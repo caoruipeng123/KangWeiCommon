@@ -81,6 +81,24 @@ namespace KangWeiCommon.Tests
             DateTime time = KangWeiUtil.GetDateTime(timetamp);
             Assert.IsTrue(time == new DateTime(2019, 01, 01, 1, 1, 1));
         }
+
+        [TestMethod]
+        public void GetWeekFirstTest()
+        {
+            DateTime firstWeek = KangWeiUtil.GetWeekFirst(new DateTime(2022, 09, 15, 12, 15, 12));
+            Assert.IsTrue(firstWeek.Year == 2022);
+            Assert.IsTrue(firstWeek.Month == 9);
+            Assert.IsTrue(firstWeek.Day == 12);
+        }
+
+        [TestMethod]
+        public void GetWeekLastTest()
+        {
+            DateTime firstWeek = KangWeiUtil.GetWeekLast(new DateTime(2022, 09, 15, 12, 15, 12));
+            Assert.IsTrue(firstWeek.Year == 2022);
+            Assert.IsTrue(firstWeek.Month == 9);
+            Assert.IsTrue(firstWeek.Day == 18);
+        }
     }
     public class CSVDemo
     {
