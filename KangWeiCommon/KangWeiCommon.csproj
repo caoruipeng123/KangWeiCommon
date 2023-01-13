@@ -1,34 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<MajorVersion>1</MajorVersion>
+		<MinorVersion>0</MinorVersion>
+		<PatchVersion>16</PatchVersion>
+		<VersionPrefix>$(MajorVersion).$(MinorVersion).$(PatchVersion)</VersionPrefix>
+	</PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;netcoreapp3.1;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>caoruipeng</Authors>
+		<Company>山西康维思辰科技有限公司</Company>
+		<Product>C#公共基础类库</Product>
+		<RepositoryType>github</RepositoryType>
+		<RepositoryUrl>https://github.com/caoruipeng123/KangWeiCommon</RepositoryUrl>
+		<Description>该类库为C#/.NET公共基础类库，项目开源免费，目前已经公司线上环境使用，欢迎大家使用！</Description>
+		<PackageReleaseNotes>新增获取本周时间的第一天和最后一天</PackageReleaseNotes>
+		<Version>$(VersionPrefix)</Version>
+		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+		<FileVersion>$(VersionPrefix)</FileVersion>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFrameworks>net5.0;netcoreapp3.1;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>caoruipeng</Authors>
-    <Company>山西康维思辰科技有限公司</Company>
-    <Product>C#公共基础类库</Product>
-    <RepositoryType>github</RepositoryType>
-    <RepositoryUrl>https://github.com/caoruipeng123/KangWeiCommon</RepositoryUrl>
-    <Description>该类库为C#/.NET公共基础类库，项目开源免费，目前已经公司线上环境使用，欢迎大家使用！</Description>
-    <PackageReleaseNotes>新增获取本周时间的第一天和最后一天</PackageReleaseNotes>
-    <Version>1.0.16</Version>
-    <AssemblyVersion>1.0.16</AssemblyVersion>
-    <FileVersion>1.0.16</FileVersion>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
+		<DocumentationFile>D:\kangwei\KangWeiCommon\KangWeiCommon\KangWeiCommon.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
-    <DocumentationFile>D:\kangwei\KangWeiCommon\KangWeiCommon\KangWeiCommon.xml</DocumentationFile>
-  </PropertyGroup>
+	<ItemGroup>
+		<Compile Remove="Security\DEncryptUtil.cs" />
+		<Compile Remove="Security\HashEncodeUtil.cs" />
+		<Compile Remove="Security\MySecurityUtil.cs" />
+		<Compile Remove="Security\RSACryptionUtil.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Security\DEncryptUtil.cs" />
-    <Compile Remove="Security\HashEncodeUtil.cs" />
-    <Compile Remove="Security\MySecurityUtil.cs" />
-    <Compile Remove="Security\RSACryptionUtil.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DataAnnotations\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="DataAnnotations\" />
+	</ItemGroup>
 
 </Project>
