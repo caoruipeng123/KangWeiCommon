@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<!--版本号相关属性配置-->
 	<PropertyGroup>
 		<MajorVersion>1</MajorVersion>
 		<MinorVersion>0</MinorVersion>
