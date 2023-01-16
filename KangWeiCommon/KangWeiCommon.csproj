@@ -2,8 +2,8 @@
 	<!--版本号相关属性配置-->
 	<PropertyGroup>
 		<MajorVersion>1</MajorVersion>
-		<MinorVersion>0</MinorVersion>
-		<PatchVersion>16</PatchVersion>
+		<MinorVersion>2</MinorVersion>
+		<PatchVersion>0</PatchVersion>
 		<VersionPrefix>$(MajorVersion).$(MinorVersion).$(PatchVersion)</VersionPrefix>
 	</PropertyGroup>
 	<PropertyGroup>
@@ -14,12 +14,13 @@
 		<Product>C#公共基础类库</Product>
 		<RepositoryType>github</RepositoryType>
 		<RepositoryUrl>https://github.com/caoruipeng123/KangWeiCommon</RepositoryUrl>
-		<Description>该类库为C#/.NET公共基础类库，项目开源免费，目前已经公司线上环境使用，欢迎大家使用！</Description>
+		<Description>该类库为C#/.NET公共基础类库，项目开源免费，目前已经在线上环境使用，欢迎大家使用！</Description>
 		<PackageReleaseNotes>新增获取本周时间的第一天和最后一天</PackageReleaseNotes>
 		<Version>$(VersionPrefix)</Version>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
 		<FileVersion>$(VersionPrefix)</FileVersion>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<PackageReadmeFile>nuget.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
@@ -35,6 +36,13 @@
 
 	<ItemGroup>
 		<Folder Include="DataAnnotations\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\nuget.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>
